@@ -37,6 +37,7 @@
     "bitcoinjs-lib": "^6.1.5",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "dotenv": "^16.4.5",
     "ethereumjs-wallet": "^1.0.2",
     "ethers": "^5.6.9",
     "grammy": "^1.25.0",

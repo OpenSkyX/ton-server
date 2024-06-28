@@ -1,8 +1,9 @@
+require('dotenv').config();
 import devConfig from "./config.dev";
 import prodConfig from "./config.prod";
 
 const env = process.env.NODE_ENV;
-console.log("ENV:",env)
+// const env = "dev";
 const index = env == "dev" ? devConfig : prodConfig;
 console.log("current evn:", env);
 

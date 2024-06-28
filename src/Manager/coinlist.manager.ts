@@ -2,7 +2,7 @@ import { Injectable, Logger } from "@nestjs/common";
 import { CreateCoinRequest } from "../Common/ReqRspParam/CreateCoinRequst";
 import { SearchCoinRequest } from "../Common/ReqRspParam/SearchCoinRequest";
 import CoinList from "../Model/coinlist.model";
-import { or } from "sequelize";
+import { Op, or } from "sequelize";
 import AccountInfo from "src/Model/accountInfo.model";
 import Comment from "src/Model/comment.model";
 
@@ -60,7 +60,7 @@ export class CoinListManager {
                 include: [
                     {
                         model: AccountInfo,
-                        attributes: ['firstName','lastName', 'address'],
+                        attributes: ['firstName', 'lastName', 'address'],
                     }
                 ]
             })
@@ -92,7 +92,7 @@ export class CoinListManager {
             where: { creatorUserId: search.userId },
             offset, limit, order: [['createdAt', 'DESC']],
             include: [
-                { model: AccountInfo, attributes: ['firstName','lastName', 'address'], }
+                { model: AccountInfo, attributes: ['firstName', 'lastName', 'address'], }
             ]
         })
         if (data) {
@@ -115,8 +115,23 @@ export class CoinListManager {
             where = { contractAddress: search.contract }
         }
         if (search.name) {
-            where = { coinName: search.name }
+            where = {
+                [Op.or]: [
+                    {
+                        coinSymbol: {
+                            [Op.like]: `%${search.name}%`
+                        }
+    
+                    },{
+                        coinName: {
+                            [Op.like]: `%${search.name}%`
+                        }
+                    }
+                ]
+            }
+
         }
+
         // 构建分页参数
         const page = search.pageNumber || 1;
         const pageSize = parseInt(search.pageSize.toString()) || 10;
@@ -128,7 +143,7 @@ export class CoinListManager {
         let data = await CoinList.findAll({
             where, offset, limit,
             include: [
-                { model: AccountInfo, attributes: ['firstName','lastName', 'address'], }
+                { model: AccountInfo, attributes: ['firstName', 'lastName', 'address'], }
             ]
         })
 
