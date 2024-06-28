@@ -1,6 +1,6 @@
 import { Body,  Controller,  Get,  Logger,  Param,  Post, Query, UsePipes } from "@nestjs/common";
-import { LikeRequest } from "src/Common/ReqRspParam/LikeRequest";
-import { LikeService } from "src/Service/like.service";
+import { LikeRequest } from "../Common/ReqRspParam/LikeRequest";
+import { LikeService } from "../Service/like.service";
 
 @Controller("like")
 export class LikeController{

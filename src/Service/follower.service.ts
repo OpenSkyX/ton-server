@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { FollowerManager } from "src/Manager/follower.manager";
+import { FollowerManager } from "../Manager/follower.manager";
 
 @Injectable()
 export class FollowerService{

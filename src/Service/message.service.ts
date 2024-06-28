@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { MessageRequest } from "src/Common/ReqRspParam/MessageReqeust";
-import { MessageManager } from "src/Manager/message.manager";
+import { MessageRequest } from "../Common/ReqRspParam/MessageReqeust";
+import { MessageManager } from "../Manager/message.manager";
 
 @Injectable()
 export class MessageService{

@@ -26,7 +26,7 @@ export default {
     connectionLimit: 100,
   },
 
-  serverPort: 8080,
+  serverPort: 3344,
   autoCreateTable: true, //自动建表
   logSql: true, //打印sql日志
   address: {

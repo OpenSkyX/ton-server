@@ -1,11 +1,11 @@
 import { Body,  Controller,  Get,  Logger,  Param,  Post, Query, UsePipes } from "@nestjs/common";
 import { ApiOperation } from "@nestjs/swagger";
-import { CreateCoinRequest } from "src/Common/ReqRspParam/CreateCoinRequst";
-import { LikeRequest } from "src/Common/ReqRspParam/LikeRequest";
-import { SearchCoinRequest } from "src/Common/ReqRspParam/SearchCoinRequest";
-import { ErrorHandler } from "src/Common/Response/ErrorHandler";
-import { CoinListService } from "src/Service/coinlist.service";
-import { broadcastMessage } from "src/wss/WssServer";
+import { CreateCoinRequest } from "../Common/ReqRspParam/CreateCoinRequst";
+import { LikeRequest } from "../Common/ReqRspParam/LikeRequest";
+import { SearchCoinRequest } from "../Common/ReqRspParam/SearchCoinRequest";
+import { ErrorHandler } from "../Common/Response/ErrorHandler";
+import { CoinListService } from "../Service/coinlist.service";
+import { broadcastMessage } from "../wss/WssServer";
 
 
 @Controller("token")
@@ -29,6 +29,11 @@ export class CoinListController{
     @Get("listForMe")
     async getCoinListForMe(@Query() search:SearchCoinRequest){
         return this.service.getCoinListForMe(search).catch(ErrorHandler.handlerError);
+    }
+
+    @Get("searchToken")
+    async searchToken(@Query() search:SearchCoinRequest){
+        return this.service.searchToken(search).catch(ErrorHandler.handlerError);
     }
 
 

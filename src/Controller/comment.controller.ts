@@ -1,10 +1,10 @@
 import { Body, Controller, Post,Get, Query } from "@nestjs/common";
-import { CommentRequest } from "src/Common/ReqRspParam/CommentRequest";
-import { GetCommentrequest } from "src/Common/ReqRspParam/GetCommentRequest";
-import { TraderCommentRequest } from "src/Common/ReqRspParam/TraderCommentRequest";
-import { ErrorHandler } from "src/Common/Response/ErrorHandler";
-import { CommentService } from "src/Service/comment.service";
-import { broadcastMessage, startWssServer } from "src/wss/WssServer";
+import { CommentRequest } from "../Common/ReqRspParam/CommentRequest";
+import { GetCommentrequest } from "../Common/ReqRspParam/GetCommentRequest";
+import { TraderCommentRequest } from "../Common/ReqRspParam/TraderCommentRequest";
+import { ErrorHandler } from "../Common/Response/ErrorHandler";
+import { CommentService } from "../Service/comment.service";
+import { broadcastMessage, startWssServer } from "../wss/WssServer";
 
 @Controller("comment")
 export  class CommentController{

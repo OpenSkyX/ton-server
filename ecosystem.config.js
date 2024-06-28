@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'themisFilServer',
+      name: 'ton-pump-server',
       script: 'src/main.js', // 入口文件路径，这里假设编译后的 JavaScript 代码位于 dist/src 目录下的 main.js 文件中
       instances: '1', // 可选，设置进程实例数，可以是max
       exec_mode: 'fork',// 可选，设置执行模式，使用 cluster或fork 模式

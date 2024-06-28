@@ -1,6 +1,6 @@
 import TonConnect from '@tonconnect/sdk';
 import * as process from 'process';
-import { AccountInfoManager } from 'src/Manager/accountInfo.manager';
+import { AccountInfoManager } from '../../Manager/accountInfo.manager';
 
 type StoredConnectorData = {
     connector: TonConnect;

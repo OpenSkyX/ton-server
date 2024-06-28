@@ -3,12 +3,12 @@ import { ErrorHandler } from "../Common/Response/ErrorHandler";
 import { CommonUtils } from "../Common/Utils/CommonUtils";
 import { AccountInfoManager } from "../Manager/accountInfo.manager";
 import { AccountInfoService } from "../Service/accountInfo.service";
-import { TELEGRAM_BOT_TOKEN, TELEGRAM_BOT_NAME } from "src/Common/Constant";
+import { TELEGRAM_BOT_TOKEN, TELEGRAM_BOT_NAME } from "../Common/Constant";
 import axios from 'axios';
 import * as crypto from 'crypto';
 import AccountInfo from "src/Model/accountInfo.model";
-import { UpdateBioRequest } from "src/Common/ReqRspParam/updateBioRequest";
-import { GetFollowerRequest } from "src/Common/ReqRspParam/GetFollowerRequest";
+import { UpdateBioRequest } from "../Common/ReqRspParam/updateBioRequest";
+import { GetFollowerRequest } from "../Common/ReqRspParam/GetFollowerRequest";
 import { logger } from "ethers";
 const querystring = require('querystring');
 

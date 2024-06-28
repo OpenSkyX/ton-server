@@ -5,8 +5,8 @@ import { TELEGRAM_BOT_TOKEN } from "src/Common/Constant";
 
 import TelegramBot from 'node-telegram-bot-api';
 import { generateInviteCode, getHeadImage } from "./utils/common";
-import AccountInfo from "src/Model/accountInfo.model";
-import { AccountInfoManager } from "src/Manager/accountInfo.manager";
+import AccountInfo from "../Model/accountInfo.model";
+import { AccountInfoManager } from "../Manager/accountInfo.manager";
 import { Injectable, Logger } from "@nestjs/common";
 
 /* 

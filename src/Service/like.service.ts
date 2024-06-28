@@ -1,7 +1,7 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { LikeRequest } from "src/Common/ReqRspParam/LikeRequest";
-import { LikeManager } from "src/Manager/like.manager";
-import Like from "src/Model/like.model";
+import { LikeRequest } from "../Common/ReqRspParam/LikeRequest";
+import { LikeManager } from "../Manager/like.manager";
+import Like from "../Model/like.model";
 
 @Injectable()
 export class LikeService{

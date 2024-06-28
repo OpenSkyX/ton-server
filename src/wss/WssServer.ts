@@ -5,7 +5,7 @@ import WebSocket, { WebSocketServer } from 'ws';
 
 const wss = new WebSocketServer({
   port: 4050,
-  // host: "localhost",
+  host: "127.0.0.1",
   perMessageDeflate: {
     zlibDeflateOptions: {
       // See zlib defaults.

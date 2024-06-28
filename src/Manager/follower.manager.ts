@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import { FollowerRequest } from "src/Common/ReqRspParam/followerRequest";
-import Follower from "src/Model/follower.model";
-import Message from "src/Model/message.model";
+import { FollowerRequest } from "../Common/ReqRspParam/followerRequest";
+import Follower from "../Model/follower.model";
+import Message from "../Model/message.model";
 
 
 @Injectable()

@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
-import { MessageRequest } from "src/Common/ReqRspParam/MessageReqeust";
-import AccountInfo from "src/Model/accountInfo.model";
-import Comment from "src/Model/comment.model";
-import Message from "src/Model/message.model";
+import { MessageRequest } from "../Common/ReqRspParam/MessageReqeust";
+import AccountInfo from "../Model/accountInfo.model";
+import Comment from "../Model/comment.model";
+import Message from "../Model/message.model";
 
 @Injectable()
 export class MessageManager {

@@ -14,11 +14,11 @@ export default {
   db: { 
     host: "127.0.0.1",
     port: 3306,
-    /* user: "root",
-    password: "12345678", */
-    user: "devlop",
-    password: "%7RF9Xu&wDBt",
-    database: "pump_dev",
+    user: "root",
+    password: "12345678",
+    /* user: "devlop",
+    password: "%7RF9Xu&wDBt", */
+    database: "ton_pump_server",
     charset: "UTF8MB4_GENERAL_CI",
     connectTimeout: 10000,
     connectionLimit: 100,

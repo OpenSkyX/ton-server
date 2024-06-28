@@ -1,5 +1,4 @@
 import ContractUtils from "../../Common/Utils/ContractUtils";
-import contractArtifact from "./artifacts/UniswapV2Pair.json";
 const { ethers } = require("ethers");
 import { Contract } from "web3-eth-contract";
 import { CommonUtils } from "../../Common/Utils/CommonUtils";

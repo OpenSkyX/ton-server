@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
-import { CommentRequest } from "src/Common/ReqRspParam/CommentRequest";
-import { GetCommentrequest } from "src/Common/ReqRspParam/GetCommentRequest";
-import { TraderCommentRequest } from "src/Common/ReqRspParam/TraderCommentRequest";
-import { CommentManager } from "src/Manager/comment.manager";
+import { CommentRequest } from "../Common/ReqRspParam/CommentRequest";
+import { GetCommentrequest } from "../Common/ReqRspParam/GetCommentRequest";
+import { TraderCommentRequest } from "../Common/ReqRspParam/TraderCommentRequest";
+import { CommentManager } from "../Manager/comment.manager";
 
 @Injectable()
 export class CommentService {

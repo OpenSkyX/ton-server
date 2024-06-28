@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from "@nestjs/common";
-import { MessageRequest } from "src/Common/ReqRspParam/MessageReqeust";
-import { ErrorHandler } from "src/Common/Response/ErrorHandler";
-import { MessageService } from "src/Service/message.service";
+import { MessageRequest } from "../Common/ReqRspParam/MessageReqeust";
+import { ErrorHandler } from "../Common/Response/ErrorHandler";
+import { MessageService } from "../Service/message.service";
 
 @Controller('msg')
 export class MessageController{

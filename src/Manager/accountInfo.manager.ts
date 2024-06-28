@@ -4,11 +4,11 @@ import AccountInfo from "../Model/accountInfo.model";
 import { AccountDetailRsp } from "../Common/ReqRspParam/AccountDetailRsp";
 const { ethers } = require("ethers");
 import { IStorage } from '@tonconnect/sdk';
-import Like from "src/Model/like.model";
-import Follower from "src/Model/follower.model";
-import Comment from "src/Model/comment.model";
-import { UpdateBioRequest } from "src/Common/ReqRspParam/updateBioRequest";
-import { GetFollowerRequest } from "src/Common/ReqRspParam/GetFollowerRequest";
+import Like from "../Model/like.model";
+import Follower from "../Model/follower.model";
+import Comment from "../Model/comment.model";
+import { UpdateBioRequest } from "../Common/ReqRspParam/updateBioRequest";
+import { GetFollowerRequest } from "../Common/ReqRspParam/GetFollowerRequest";
 
 @Injectable()
 export class AccountInfoManager implements IStorage {

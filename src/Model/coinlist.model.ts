@@ -1,4 +1,5 @@
-import { Table, Column, Model, Unique, Index, DataType } from "sequelize-typescript";
+import { Table, Column, Model, Unique, Index, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
+import AccountInfo from "./accountInfo.model";
 
 @Table({
   tableName: "coin_list",
@@ -11,6 +12,7 @@ export default class CoinList extends Model<CoinList> {
     @Column({ primaryKey: true, autoIncrement: true, type: DataType.BIGINT, comment: "自增id" })
     id: bigint;
 
+    @ForeignKey(() => AccountInfo)
     @Column({ comment: "创建者" })
     creatorUserId: bigint;
 
@@ -50,5 +52,13 @@ export default class CoinList extends Model<CoinList> {
     @Column({ comment: "website 连接" })
     websiteLink: string;
 
+
+    @BelongsTo(() => AccountInfo, 'creatorUserId')
+    account?:string;
+
+    replies?:number;
+
+    @Column({ comment: "市值" })
+    marketCap:number;
 
 }

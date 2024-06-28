@@ -5,7 +5,7 @@ import QRCode from 'qrcode';
 import TelegramBot from 'node-telegram-bot-api';
 import { getConnector } from './ton-connect/connector';
 import { addTGReturnStrategy, buildUniversalKeyboard, pTimeout, pTimeoutException } from './utils/utils';
-import AccountInfo from 'src/Model/accountInfo.model';
+import AccountInfo from '../Model/accountInfo.model';
 
 
 let newConnectRequestListenersMap = new Map<number, () => void>();

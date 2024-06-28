@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from "@nestjs/common";
-import { FollowerRequest } from "src/Common/ReqRspParam/followerRequest";
-import Follower from "src/Model/follower.model";
-import { FollowerService } from "src/Service/follower.service";
+import { FollowerRequest } from "../Common/ReqRspParam/followerRequest";
+import Follower from "../Model/follower.model";
+import { FollowerService } from "../Service/follower.service";
 
 @Controller("follower")
 export class FollowerController{

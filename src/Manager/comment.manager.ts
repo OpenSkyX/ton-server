@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
-import { CommentRequest } from "src/Common/ReqRspParam/CommentRequest";
-import { GetCommentrequest } from "src/Common/ReqRspParam/GetCommentRequest";
-import { TraderCommentRequest } from "src/Common/ReqRspParam/TraderCommentRequest";
-import Comment from "src/Model/comment.model";
-import Like from "src/Model/like.model";
-import Message from "src/Model/message.model";
+import { CommentRequest } from "../Common/ReqRspParam/CommentRequest";
+import { GetCommentrequest } from "../Common/ReqRspParam/GetCommentRequest";
+import { TraderCommentRequest } from "../Common/ReqRspParam/TraderCommentRequest";
+import Comment from "../Model/comment.model";
+import Like from "../Model/like.model";
+import Message from "../Model/message.model";
 
 @Injectable()
 export class CommentManager {
@@ -59,6 +59,7 @@ export class CommentManager {
             offset: offset,
             limit: parseInt(body.pageSize.toString())
         });
+        const totalCount = await this.commentModel.count({where: { contract: body.contract }})
 
         // 使用 Promise.all() 并行查询每条评论的点赞数
         await Promise.all(
@@ -67,7 +68,7 @@ export class CommentManager {
                 comment.setDataValue('likeCount', likeCount); // 设置点赞数到评论对象中
             })
         );
-        return comments;
+        return {total:totalCount,data:comments};
     }
 
 }
