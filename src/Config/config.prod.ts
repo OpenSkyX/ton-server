@@ -12,10 +12,10 @@ export default {
   web3Provider: web3ProviderConst,
   web3Obj: new Web3(web3ProviderConst),
   db: { 
-    host: "127.0.0.1",
-    port: 3306,
+    host: "ewr1.clusters.zeabur.com",
+    port: 32236,
     user: "root",
-    password: "12345678",
+    password: "Cc5pU0731hvnA6yl8dBMHSKzeL94TiJ2",
     /* user: "devlop",
     password: "%7RF9Xu&wDBt", */
     database: "ton_pump_server",
