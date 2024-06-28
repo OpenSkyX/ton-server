@@ -5,7 +5,9 @@ import { TraderCommentRequest } from "../Common/ReqRspParam/TraderCommentRequest
 import { ErrorHandler } from "../Common/Response/ErrorHandler";
 import { CommentService } from "../Service/comment.service";
 import { broadcastMessage, startWssServer } from "../wss/WssServer";
+import { ApiTags } from "@nestjs/swagger";
 
+@ApiTags("comment")
 @Controller("comment")
 export  class CommentController{
 

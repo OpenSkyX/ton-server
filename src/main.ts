@@ -33,9 +33,7 @@ async function bootstrap() {
   logger.log(`telegram bot server start success`);
 }
 
-async function callBack() {
 
-}
 
 bootstrap();
 

@@ -6,12 +6,14 @@ import { AccountInfoService } from "../Service/accountInfo.service";
 import { TELEGRAM_BOT_TOKEN, TELEGRAM_BOT_NAME } from "../Common/Constant";
 import axios from 'axios';
 import * as crypto from 'crypto';
-import AccountInfo from "src/Model/accountInfo.model";
+import AccountInfo from "../Model/accountInfo.model";
 import { UpdateBioRequest } from "../Common/ReqRspParam/updateBioRequest";
 import { GetFollowerRequest } from "../Common/ReqRspParam/GetFollowerRequest";
 import { logger } from "ethers";
+import { ApiTags } from "@nestjs/swagger";
 const querystring = require('querystring');
 
+@ApiTags("account")
 @Controller("account")
 export class AccountController {
   constructor(private readonly accountInfoManager: AccountInfoManager, private readonly accountInfoService: AccountInfoService) { }

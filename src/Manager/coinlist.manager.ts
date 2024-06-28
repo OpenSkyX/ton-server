@@ -3,8 +3,9 @@ import { CreateCoinRequest } from "../Common/ReqRspParam/CreateCoinRequst";
 import { SearchCoinRequest } from "../Common/ReqRspParam/SearchCoinRequest";
 import CoinList from "../Model/coinlist.model";
 import { Op, or } from "sequelize";
-import AccountInfo from "src/Model/accountInfo.model";
+import AccountInfo from "../Model/accountInfo.model";
 import Comment from "src/Model/comment.model";
+
 
 @Injectable()
 export class CoinListManager {
@@ -18,6 +19,11 @@ export class CoinListManager {
         return await CoinList.findOne({ where: { contractAddress: coinAddress } });
     }
 
+    /**
+     * 
+     * @param createCoin 创建代币
+     * @returns 
+     */
     async createCoin(createCoin: CreateCoinRequest) {
         this.logger.log("createCoin:", JSON.stringify(createCoin));
         const coin = await this.existCoin(createCoin.contractAddress)
@@ -43,6 +49,11 @@ export class CoinListManager {
     }
 
 
+    /**
+     *  获取代币列表
+     * @param search 
+     * @returns 
+     */
     async getCoinList(search: SearchCoinRequest) {
 
         // 构建分页参数
@@ -77,6 +88,11 @@ export class CoinListManager {
         };
     }
 
+    /**
+     *  用户发行代币列表
+     * @param search 用户发行代币列表
+     * @returns 
+     */
     async getCoinListForMe(search: SearchCoinRequest) {
 
         // 构建分页参数
@@ -109,6 +125,11 @@ export class CoinListManager {
     }
 
 
+    /**
+     *  搜索代币
+     * @param search 根据合约地址和代币名称，简称检索代币列表
+     * @returns 
+     */
     async searchToken(search: SearchCoinRequest) {
         let where = {};
         if (search.contract) {
@@ -157,5 +178,20 @@ export class CoinListManager {
         }
 
         return { total: totalCount, data: data }
+    }
+    
+
+    /**
+     *  获取代币详情
+     * @param contract 
+     * @returns 
+     */
+    async getCoinDetail(contract: string) {
+        const coin = await CoinList.findOne({ where: { contractAddress: contract } })
+        if (coin) {
+            const repliesCount = await Comment.count({ where: { contract: coin.contractAddress } });
+            coin.setDataValue('replies', repliesCount); // 设置点赞数到评论对象中
+        }
+        return coin;
     }
 }

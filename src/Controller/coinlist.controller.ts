@@ -1,5 +1,5 @@
 import { Body,  Controller,  Get,  Logger,  Param,  Post, Query, UsePipes } from "@nestjs/common";
-import { ApiOperation } from "@nestjs/swagger";
+import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { CreateCoinRequest } from "../Common/ReqRspParam/CreateCoinRequst";
 import { LikeRequest } from "../Common/ReqRspParam/LikeRequest";
 import { SearchCoinRequest } from "../Common/ReqRspParam/SearchCoinRequest";
@@ -8,6 +8,7 @@ import { CoinListService } from "../Service/coinlist.service";
 import { broadcastMessage } from "../wss/WssServer";
 
 
+@ApiTags("token")
 @Controller("token")
 export class CoinListController{
 

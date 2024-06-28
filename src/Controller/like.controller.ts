@@ -1,7 +1,9 @@
 import { Body,  Controller,  Get,  Logger,  Param,  Post, Query, UsePipes } from "@nestjs/common";
 import { LikeRequest } from "../Common/ReqRspParam/LikeRequest";
 import { LikeService } from "../Service/like.service";
+import { ApiTags } from "@nestjs/swagger";
 
+@ApiTags("like")
 @Controller("like")
 export class LikeController{
 

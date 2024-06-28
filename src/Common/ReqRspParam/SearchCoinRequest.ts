@@ -4,13 +4,18 @@ import { Pagination } from "./pagination";
 import { Sort } from "./sort";
 import { IsNotEmpty, IsOptional } from "class-validator";
 
+
+enum orderType {
+    DESC= 'DESC',
+    ASC = 'ASC'
+  }
 export class SearchCoinRequest extends PageBaseReq{
     
     @ApiProperty()
     @IsNotEmpty()
     sortField:string;
 
-    @ApiProperty()
+    @ApiProperty({enum: orderType,default:orderType.DESC})
     @IsNotEmpty()
     sortOrder:string;
 

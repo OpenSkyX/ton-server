@@ -27,7 +27,7 @@ export async function botServe() {
 
   // 处理 polling 错误
   bot.on('polling_error', (error) => {
-    console.error('Polling error occurred:', error);
+    console.error('Polling error occurred:', error.code);
     // 根据具体错误类型进行处理
     // 如果是网络错误，可以尝试重连
     if (error.code === 'EFATAL') {
