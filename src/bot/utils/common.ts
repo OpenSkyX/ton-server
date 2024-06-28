@@ -1,4 +1,4 @@
-import { CommonUtils } from "src/Common/Utils/CommonUtils";
+import { CommonUtils } from "../../Common/Utils/CommonUtils";
 import { TELEGRAM_BOT_TOKEN } from "../../Common/Constant";
 import TelegramBot from 'node-telegram-bot-api';
 import {Logger} from "@nestjs/common";

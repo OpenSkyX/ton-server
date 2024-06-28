@@ -1,6 +1,6 @@
 let Web3 = require("web3");
 import { ethers } from "ethers";
-import { TELEGRAM_BOT_TOKEN } from "src/Common/Constant";
+import { TELEGRAM_BOT_TOKEN } from "../Common/Constant";
 const providerEndPointConst = "https://rpc.themis.capital/filecoin"; //"https://api.node.glif.io"; //"https://rpc.themis.capital/filecoin";//"https://infura.sftproject.io/filecoin/rpc/v1"; ////"https://filecoin.chainup.net/rpc/v1"; //"https://api.node.glif.io"; //"https://rpc.ankr.com/filecoin";
 const ethersProviderConst = new ethers.providers.JsonRpcProvider(providerEndPointConst);
 const web3ProviderConst = new Web3.providers.HttpProvider(providerEndPointConst);

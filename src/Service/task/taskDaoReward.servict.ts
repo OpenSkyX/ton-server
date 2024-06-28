@@ -3,7 +3,7 @@ import { Cron } from "@nestjs/schedule";
 import { CommonUtils } from "../../Common/Utils/CommonUtils";
 import config from "../../Config";
 import { AccountTermInfoStatusEnum } from "../../Common/Enum"
-import { AccountInfoManager } from "src/Manager/accountInfo.manager";
+import { AccountInfoManager } from "../../Manager/accountInfo.manager";
 
 let isTaskRunning = false;
 

@@ -2,7 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import config from "./Config";
 import { TransformInterceptor } from "./Common/Response/TransformInterceptor";
-import { botServe } from "../src/bot/bot.server";
+import { botServe } from "./bot/bot.server";
 
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { Swagger } from "./swagger/SwaggerConfigure";

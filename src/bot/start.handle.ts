@@ -1,7 +1,7 @@
 import { AnyCnameRecord } from "dns";
 import { bot } from "./bot";
-import { CommonUtils } from "src/Common/Utils/CommonUtils";
-import { TELEGRAM_BOT_TOKEN } from "src/Common/Constant";
+import { CommonUtils } from "../Common/Utils/CommonUtils";
+import { TELEGRAM_BOT_TOKEN } from "../Common/Constant";
 
 import TelegramBot from 'node-telegram-bot-api';
 import { generateInviteCode, getHeadImage } from "./utils/common";
