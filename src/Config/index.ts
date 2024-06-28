@@ -1,7 +1,7 @@
 import devConfig from "./config.dev";
 import prodConfig from "./config.prod";
 
-const env = "dev";
+const env = process.env.NODE_ENV;
 console.log("ENV:",env)
 const index = env == "dev" ? devConfig : prodConfig;
 console.log("current evn:", env);
