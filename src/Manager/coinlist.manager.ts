@@ -4,7 +4,7 @@ import { SearchCoinRequest } from "../Common/ReqRspParam/SearchCoinRequest";
 import CoinList from "../Model/coinlist.model";
 import { Op, or } from "sequelize";
 import AccountInfo from "../Model/accountInfo.model";
-import Comment from "src/Model/comment.model";
+import Comment from "../Model/comment.model";
 
 
 @Injectable()
