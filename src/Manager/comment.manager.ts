@@ -6,7 +6,7 @@ import { TraderCommentRequest } from "../Common/ReqRspParam/TraderCommentRequest
 import Comment from "../Model/comment.model";
 import Like from "../Model/like.model";
 import Message from "../Model/message.model";
-import AccountInfo from "src/Model/accountInfo.model";
+import AccountInfo from "../Model/accountInfo.model";
 
 @Injectable()
 export class CommentManager {
