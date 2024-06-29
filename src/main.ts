@@ -31,7 +31,7 @@ async function bootstrap() {
   logger.log(`server start success,linten port: ${config.serverPort}`);
 
   //启动bot
-  // botServe();
+  botServe();
   startWssServer();
 
   logger.log(`telegram bot server start success`);
