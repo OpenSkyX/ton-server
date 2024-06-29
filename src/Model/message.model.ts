@@ -2,7 +2,6 @@
 
 import { Table, Column, Model, Unique, Index, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
 import Comment from "./comment.model";
-import { Account } from "@tonconnect/sdk";
 import AccountInfo from "./accountInfo.model";
 
 

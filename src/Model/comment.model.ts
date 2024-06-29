@@ -1,6 +1,7 @@
 
-import { Table, Column, Model, Unique, Index, DataType, HasMany } from "sequelize-typescript";
+import { Table, Column, Model, Unique, Index, DataType, HasMany, BelongsTo } from "sequelize-typescript";
 import Like from "./like.model";
+import AccountInfo from "./accountInfo.model";
 
 @Table({
   tableName: "comment_info",
@@ -48,5 +49,8 @@ export default class Comment extends Model<Comment> {
   likes: Like[];
 
   likeCount?: number; // 定义 likeCount 字段，用于存储点赞数
+
+  @BelongsTo(() => AccountInfo, 'userId')
+  account?:string;
 
 }

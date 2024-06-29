@@ -6,6 +6,7 @@ import { TraderCommentRequest } from "../Common/ReqRspParam/TraderCommentRequest
 import Comment from "../Model/comment.model";
 import Like from "../Model/like.model";
 import Message from "../Model/message.model";
+import AccountInfo from "src/Model/accountInfo.model";
 
 @Injectable()
 export class CommentManager {
@@ -54,10 +55,11 @@ export class CommentManager {
         const offset = (body.pageNumber - 1) * body.pageSize;
         const comments = await this.commentModel.findAll({
             where: { contract: body.contract },
-            include: [{ model: Like, as: 'likes' }],
+            include: [{ model: Like, as: 'likes' },{model: AccountInfo, attributes: ['firstName', 'lastName', 'address','avatar'],}],
             order: [['createdAt', 'DESC']],
             offset: offset,
-            limit: parseInt(body.pageSize.toString())
+            limit: parseInt(body.pageSize.toString()),
+            
         });
         const totalCount = await this.commentModel.count({where: { contract: body.contract }})
 
