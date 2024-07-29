@@ -31,4 +31,8 @@ export class TraderCommentRequest {
     @IsNotEmpty()
     baseToken: string;
 
+    @ApiProperty()
+    @IsNotEmpty()
+    price: number;
+
 }

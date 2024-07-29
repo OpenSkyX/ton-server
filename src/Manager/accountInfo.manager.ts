@@ -45,10 +45,9 @@ export class AccountInfoManager implements IStorage {
       const followers: any = await Follower.count({ where: { followerUserId: accountRow.id } });
       accountRow.setDataValue('followers', followers); // 设置点赞数到评论对象中
 
-      const replys: any = await Comment.count({ where: { commentOwnerUserId: accountRow.id } });
+      const replys: any = await Comment.count({ where: { userId: accountRow.id } });
       accountRow.setDataValue('replys', replys); // 设置点赞数到评论对象中
     }
-
     return accountRow;
   }
 
@@ -72,7 +71,7 @@ export class AccountInfoManager implements IStorage {
     }
   }
 
-  async updateBio(accountDetail: UpdateBioRequest){
+  async updateBio(accountDetail: UpdateBioRequest) {
     let account: AccountInfo = await AccountInfo.findOne({ where: { address: accountDetail.address } });
     if (account) {
       account.bio = accountDetail.bio;
@@ -82,44 +81,65 @@ export class AccountInfoManager implements IStorage {
   }
 
   async getFollowerMe(body: GetFollowerRequest) {
-    const offset = (body.pageNumber - 1) * body.pageSize;
+    const page = parseInt(body.pageNumber.toString()) || 1;
+    const pageSize = parseInt(body.pageSize.toString()) || 10;
+    const offset = (page - 1) * pageSize;
+    const limit = pageSize;
+
     //根据钱包地址查询用户ID
     const user = await AccountInfo.findOne({ where: { address: body.address } });
     if (!user) {
       return "user not found";
     }
     //  , offset: offset, limit: body.pageSize
-    const followers = await Follower.findAll({ where: { followerUserId: user.id } });
+    const total = await Follower.count({ where: { userId: user.id } });
+    const followers = await Follower.findAll(
+      { where: { followerUserId: user.id },
+      offset: offset, limit: limit 
+    });
     const accounts: AccountInfo[] = [];
-    if(followers) {
+    if (followers) {
       await Promise.all(
         followers.map(async (comment) => {
           await accounts.push(await this.getAccountDetailUserId(comment.userId));
         })
       );
     }
-    return accounts;
+    return {data:accounts,total:total};
   }
 
-  async getFollower(body: GetFollowerRequest){
-    const offset = (body.pageNumber - 1) * body.pageSize;
+  async getFollower(body: GetFollowerRequest) {
+    const page = parseInt(body.pageNumber.toString()) || 1;
+    const pageSize = parseInt(body.pageSize.toString()) || 10;
+    const offset = (page - 1) * pageSize;
+    const limit = pageSize;
     //根据钱包地址查询用户ID
     const user = await AccountInfo.findOne({ where: { address: body.address } });
     if (!user) {
       return "user not found";
     }
-
-    const followers = await Follower.findAll({ where: { userId: user.id } });
+    const total  = await Follower.count({ where: { userId: user.id } });
+    const followers = await Follower.findAll({ where: { userId: user.id },offset: offset, limit: limit });
     const accounts: AccountInfo[] = [];
-    if(followers) {
+    if (followers) {
       await Promise.all(
         followers.map(async (comment) => {
           await accounts.push(await this.getAccountDetailUserId(comment.followerUserId));
         })
       );
     }
-    return accounts;
+    return {data:accounts,total:total};
   }
+
+  async inviteList(userId){
+    let accountRow = await AccountInfo.findOne({ where: { id: userId } });
+    if (accountRow) {
+      const inviteList: any = await AccountInfo.findAll({ where: { inviteCode: accountRow.slfeCode } });
+      return inviteList;
+    }
+    return null;
+  }
+
 
   private getKey(key: string): string {
     return "tonconnect:" + key;

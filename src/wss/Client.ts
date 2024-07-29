@@ -1,6 +1,6 @@
 import WebSocket from 'ws';
 
-const ws = new WebSocket('ws://localhost:4050');
+const ws = new WebSocket('ws://16.163.205.151:4050');
 
 ws.on('error', console.error);
 

@@ -8,7 +8,7 @@ import AccountInfo from "./accountInfo.model";
 @Table({
     tableName: "message",
     underscored: true,
-    indexes: [{ name: "index_address", fields: ["id"], unique: true }],
+    indexes: [],
     comment: "信息中心",
 })
 export default class Message extends Model<Message> {
@@ -34,6 +34,12 @@ export default class Message extends Model<Message> {
     @Column({ comment: "token" })
     token: string;
 
+    @Column({ comment: "上级评论ID" })
+    parentId: bigint;
+    
+    @Column({ comment: "图片" })
+    image:string;
+
     @Column({ comment: "评论ID" })
     @ForeignKey(() => Comment)
     commentId: bigint;
@@ -41,8 +47,8 @@ export default class Message extends Model<Message> {
     @BelongsTo(() => Comment, 'commentId')
     comment : Comment;
 
-
-    userInfo: AccountInfo;
+    @BelongsTo(() => AccountInfo, 'sender')
+    account: AccountInfo;
 
 
 }

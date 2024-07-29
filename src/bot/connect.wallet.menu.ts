@@ -7,11 +7,14 @@ import * as fs from 'fs';
 import { isTelegramUrl } from '@tonconnect/sdk';
 import { addTGReturnStrategy, buildUniversalKeyboard } from './utils/utils';
 import { Logger } from '@nestjs/common';
+import { connect } from 'http2';
+import { handleConnectCommand } from './commands-handlers';
 
 export const walletMenuCallbacks = {
     chose_wallet: onChooseWalletClick,
     select_wallet: onWalletClick,
-    universal_qr: onOpenUniversalQRClick
+    universal_qr: onOpenUniversalQRClick,
+    connect_cm: handleConnectCommand
 };
 async function onChooseWalletClick(query: CallbackQuery, _: string): Promise<void> {
     const wallets = await getWallets();
@@ -70,48 +73,54 @@ async function onOpenUniversalQRClick(query: CallbackQuery, _: string): Promise<
 }
 
 async function onWalletClick(query: CallbackQuery, data: string): Promise<void> {
-    const chatId = query.message!.chat.id;
-    const connector = getConnector(chatId);
+    try {
 
-    const selectedWallet = await getWalletInfo(data);
-    if (!selectedWallet) {
-        return;
-    }
+        const chatId = query.message!.chat.id;
+        const connector = getConnector(chatId);
 
-    let buttonLink = connector.connect({
-        bridgeUrl: selectedWallet.bridgeUrl,
-        universalLink: selectedWallet.universalLink
-    });
-
-    let qrLink = buttonLink;
-
-    if (isTelegramUrl(selectedWallet.universalLink)) {
-        buttonLink = addTGReturnStrategy(buttonLink, process.env.TELEGRAM_BOT_LINK!);
-        qrLink = addTGReturnStrategy(qrLink, 'none');
-    }
-
-    await editQR(query.message!, qrLink);
-
-    await bot.editMessageReplyMarkup(
-        {
-            inline_keyboard: [
-                [
-                    {
-                        text: '« Back',
-                        callback_data: JSON.stringify({ method: 'chose_wallet' })
-                    },
-                    {
-                        text: `Open ${selectedWallet.name}`,
-                        url: buttonLink
-                    }
-                ]
-            ]
-        },
-        {
-            message_id: query.message?.message_id,
-            chat_id: chatId
+        const selectedWallet = await getWalletInfo(data);
+        if (!selectedWallet) {
+            return;
         }
-    );
+
+        let buttonLink = connector.connect({
+            bridgeUrl: selectedWallet.bridgeUrl,
+            universalLink: selectedWallet.universalLink
+        });
+
+        let qrLink = buttonLink;
+        console.log("************************************************************************************");
+        console.log("buttonLink:", buttonLink);
+        if (isTelegramUrl(selectedWallet.universalLink)) {
+            buttonLink = addTGReturnStrategy(buttonLink, process.env.TELEGRAM_BOT_LINK!);
+            qrLink = addTGReturnStrategy(qrLink, 'none');
+        }
+
+        await editQR(query.message!, qrLink);
+
+        await bot.editMessageReplyMarkup(
+            {
+                inline_keyboard: [
+                    [
+                        {
+                            text: '« Back',
+                            callback_data: JSON.stringify({ method: 'chose_wallet' })
+                        },
+                        {
+                            text: `Open ${selectedWallet.name}`,
+                            url: buttonLink
+                        }
+                    ]
+                ]
+            },
+            {
+                message_id: query.message?.message_id,
+                chat_id: chatId
+            }
+        );
+    } catch (e) {
+        console.log("open wallet error：")
+    }
 }
 
 async function editQR(message: TelegramBot.Message, link: string): Promise<void> {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsEmail, MaxLength } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsNotEmpty, IsEmail, MaxLength, IsOptional } from 'class-validator';
 
 @Injectable()
 export class CommentRequest {
@@ -21,8 +21,8 @@ export class CommentRequest {
     @IsNotEmpty()
     content: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiPropertyOptional()
+    @IsOptional()
     image: string;
 
     @ApiProperty({ required: false ,title:'被评论的用户ID'})

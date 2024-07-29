@@ -5,7 +5,7 @@ import WebSocket, { WebSocketServer } from 'ws';
 
 const wss = new WebSocketServer({
   port: 4050,
-  host: "127.0.0.1",
+  host: "0.0.0.0",
   perMessageDeflate: {
     zlibDeflateOptions: {
       // See zlib defaults.
@@ -53,8 +53,9 @@ export function startWssServer() {
   });
   logger.log(`WebSocket server started at ws://` + wss.options.host + `:` + wss.options.port);
 }
-// 在 server.js 中添加的公共广播方法
 
+
+// 在 server.js 中添加的公共广播方法
 export function broadcastMessage(message) {
   wss.clients.forEach(function each(client) {
     if (client.readyState === WebSocket.OPEN) {
@@ -62,4 +63,16 @@ export function broadcastMessage(message) {
     }
   });
 }
+
+process.on('uncaughtException', (err) => {
+  console.error('There was an uncaught error', err);
+  // 根据需要决定是否退出进程
+  // process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  // 根据需要决定是否退出进程
+  // process.exit(1);
+});
 

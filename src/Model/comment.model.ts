@@ -6,7 +6,7 @@ import AccountInfo from "./accountInfo.model";
 @Table({
   tableName: "comment_info",
   underscored: true,
-  indexes: [{ name: "index_address", fields: ["id"], unique: true }],
+  indexes: [],
   comment: "评论表",
 })
 export default class Comment extends Model<Comment> {
@@ -52,5 +52,8 @@ export default class Comment extends Model<Comment> {
 
   @BelongsTo(() => AccountInfo, 'userId')
   account?:string;
+
+  // 定义 isLiked 字段，用于存储当前用户是否点赞
+  isLiked:boolean;
 
 }

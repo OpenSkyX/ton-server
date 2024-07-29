@@ -45,6 +45,7 @@ export async function buildUniversalKeyboard(
     wallets: WalletInfoRemote[]
 ): Promise<InlineKeyboardButton[]> {
     const atWallet = wallets.find(wallet => wallet.appName.toLowerCase() === AT_WALLET_APP_NAME);
+    console.log("atWallet",atWallet);
     const atWalletLink = atWallet
         ? addTGReturnStrategy(
               convertDeeplinkToUniversalLink(link, atWallet?.universalLink),
@@ -62,7 +63,7 @@ export async function buildUniversalKeyboard(
             url: `https://ton-connect.github.io/open-tc?connect=${encodeURIComponent(link)}`
         }
     ];
-
+    console.log(atWalletLink)
     if (atWalletLink) {
         keyboard.unshift({
             text: '@wallet',

@@ -8,6 +8,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { Swagger } from "./swagger/SwaggerConfigure";
 import { startWssServer } from "./wss/WssServer";
 import CustomEvent from 'custom-event';
+import { initialize } from "./Service/task/monitor";
 
 // 在全局范围内定义 CustomEvent
 (global as any).CustomEvent = CustomEvent;
@@ -33,11 +34,10 @@ async function bootstrap() {
   //启动bot
   botServe();
   startWssServer();
+  initialize();
 
   logger.log(`telegram bot server start success`);
 }
-
-
 
 bootstrap();
 

@@ -13,6 +13,12 @@ import { logger } from "ethers";
 import { ApiTags } from "@nestjs/swagger";
 const querystring = require('querystring');
 
+import { Response } from 'express';
+import { join } from 'path';
+import { createReadStream } from 'fs';
+import Config from "../Config";
+import { get } from "http";
+
 @ApiTags("account")
 @Controller("account")
 export class AccountController {
@@ -41,10 +47,24 @@ export class AccountController {
     return await this.accountInfoService.getFollowerMe(body).catch(ErrorHandler.handlerError);;
   }
 
-  @Get("follower/:address")
+  @Get("follower")
   async getFollower(@Query() body: GetFollowerRequest) {
     return await this.accountInfoService.getFollower(body).catch(ErrorHandler.handlerError);;
   }
+
+  @Get("inviteList/:userId")
+  async inviteList(@Param("userId") userId: string){
+    return await this.accountInfoService.inviteList(userId).catch(ErrorHandler.handlerError);
+  }
+
+  @Get('image/:imgPath')
+  getImage(@Param('imgPath') imgPath: string, @Res() res: Response) {
+    const imagePath = join(Config.imageFilePath, imgPath);
+    const stream = createReadStream(imagePath);
+    stream.pipe(res);
+  }
+
+  
   
 
 

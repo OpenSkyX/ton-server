@@ -6,7 +6,6 @@ import AccountInfo from "./Model/accountInfo.model";
 
 
 import { AccountInfoModule } from "./Module/accountInfo.module";
-import { TaskDaoRewardService } from "./Service/task/taskDaoReward.servict";
 import Comment from "./Model/comment.model";
 import Like from "./Model/like.model";
 import Follower from "./Model/follower.model";
@@ -17,6 +16,11 @@ import CoinList from "./Model/coinlist.model";
 import { CoinListModule } from "./Module/coinlist.moudule";
 import Message from "./Model/message.model";
 import { MessageModule } from "./Module/message.module";
+import Transaction from "./Model/transaction.model";
+import { TonTransaction } from "./Service/task/TonTransaction.service";
+import AccountInvite from "./Model/accountInvite.model";
+import BlockLatestLt from "./Model/block.model";
+import { TaskModule } from "./Module/task.module";
 
 
 
@@ -44,16 +48,21 @@ import { MessageModule } from "./Module/message.module";
         Like,
         Follower,
         CoinList,
-        Message
+        Message,
+        Transaction,
+        AccountInvite,
+        BlockLatestLt
+        // ...
       ], // 要开始使用模型，我们需要通过将其插入到`forRoot()`方法选项的`models`数组中来让`Sequelize`知道它的存在。
     }),
     AccountInfoModule,
-    TaskDaoRewardService,
     LikeModule,
     FollowerModule,
     CommentModule,
     CoinListModule,
     MessageModule,
+    // TonTransaction
+    
   ],
 })
 export class AppModule {}

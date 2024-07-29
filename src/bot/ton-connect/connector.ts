@@ -20,8 +20,9 @@ export function getConnector(
     } else {
         storedItem = {
             connector: new TonConnect({
-                manifestUrl: "https://ton-connect.github.io/demo-dapp-with-react-ui/tonconnect-manifest.json"
-                ,storage: new AccountInfoManager()
+                // manifestUrl: "https://ton-connect.github.io/demo-dapp-with-react-ui/tonconnect-manifest.json"
+                manifestUrl: "https://ivory-passive-possum-495.mypinata.cloud/ipfs/Qme8a1RsfzByoZJsbShV1Lgj9hkgP75d4i4efJ9QTtrxxh",
+                storage: new AccountInfoManager()
             }),
             onConnectorExpired: []
         } as unknown as StoredConnectorData;

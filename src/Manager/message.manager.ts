@@ -7,7 +7,7 @@ import Message from "../Model/message.model";
 @Injectable()
 export class MessageManager {
 
-    constructor() {}
+    constructor() { }
 
     //发送消息
     async postMessage(params: any) {
@@ -26,17 +26,25 @@ export class MessageManager {
         if (!user) {
             return [];
         }
-        
+        const total = await Message.count({
+            where: {
+                receiver: body.userId
+            }
+        })
         const data = await Message.findAll({
             where: {
                 receiver: body.userId
             },
             offset: OFFSET,
             limit: parseInt(body.pageSize.toString()),
-            include: [{ model: Comment, as: 'comment' }]
+            include: [
+                { model: Comment, as: 'comment' },
+                { model: AccountInfo, attributes: ['firstName','lastName', 'avatar','address'] }
+            ],
+            order: [['createdAt', 'DESC']]
         });
-        
-        return data;
+
+        return { data: data, total: total };
     }
 
     //更新已读状态
@@ -52,7 +60,7 @@ export class MessageManager {
 
     //查询是否有未读消息
     async hasUnreadMessage(userId: number) {
-        const data = await Message.findOne({
+        const data = await Message.findAll({
             where: {
                 receiver: userId,
                 status: 0

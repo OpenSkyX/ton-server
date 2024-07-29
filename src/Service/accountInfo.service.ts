@@ -20,6 +20,10 @@ export class AccountInfoService {
     return await this.accountInfoManager.getFollower(body);
   }
 
+  async inviteList(userId: string){
+    return await this.accountInfoManager.inviteList(userId);
+  }
+
   
 
   

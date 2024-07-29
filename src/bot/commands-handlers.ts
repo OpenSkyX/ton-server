@@ -11,7 +11,7 @@ import AccountInfo from '../Model/accountInfo.model';
 let newConnectRequestListenersMap = new Map<number, () => void>();
 
 export async function handleConnectCommand(msg: TelegramBot.Message): Promise<void> {
-    const chatId = msg.chat.id;
+    const chatId = msg.message.chat.id;
     let messageWasDeleted = false;
 
     
@@ -85,6 +85,8 @@ export async function handleConnectCommand(msg: TelegramBot.Message): Promise<vo
     });
 }
 
+
+/* 
 export async function handleSendTXCommand(msg: TelegramBot.Message): Promise<void> {
     const chatId = msg.chat.id;
 
@@ -196,4 +198,4 @@ export async function handleShowMyWalletCommand(msg: TelegramBot.Message): Promi
             connector.wallet!.account.chain === CHAIN.TESTNET
         )}`
     );
-}
+} */

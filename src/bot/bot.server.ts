@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { bot } from './bot';
 import { walletMenuCallbacks } from "./connect.wallet.menu";
-import { handleConnectCommand, handleSendTXCommand, handleDisconnectCommand, handleShowMyWalletCommand } from "./commands-handlers";
+// import { handleConnectCommand, handleSendTXCommand, handleDisconnectCommand, handleShowMyWalletCommand } from "./commands-handlers";
+import { handleConnectCommand } from "./commands-handlers";
 import { handleStartCommand } from "./start.handle";
 
 export async function botServe() {
@@ -10,6 +11,7 @@ export async function botServe() {
   };
 
   bot.on('callback_query', query => {
+    
     if (!query.data) {
       return;
     }
@@ -22,6 +24,7 @@ export async function botServe() {
     if (!callbacks[request.method as keyof typeof callbacks]) {
       return;
     }
+    
     callbacks[request.method as keyof typeof callbacks](query, request.data);
   });
 
@@ -75,11 +78,11 @@ export async function botServe() {
 
   bot.onText(/\/connect/, handleConnectCommand);
 
-  bot.onText(/\/send_tx/, handleSendTXCommand);
+/*   bot.onText(/\/send_tx/, handleSendTXCommand);
 
   bot.onText(/\/disconnect/, handleDisconnectCommand);
 
-  bot.onText(/\/my_wallet/, handleShowMyWalletCommand);
+  bot.onText(/\/my_wallet/, handleShowMyWalletCommand); */
 
   bot.onText(/\/start/, handleStartCommand);
 }

@@ -36,15 +36,34 @@ export class CreateCoinRequest {
     @IsNotEmpty()
     createHash: string;
 
-    @ApiPropertyOptional()
+
+    @ApiPropertyOptional({description:`
+      1:Claim rewards immediately during the presale period 
+      2:Claim rewards immediately after adding to the LP pool 
+      3:Claim rewards at a custom time after adding to the LP pool.`
+    })
+    @IsOptional()
+    rewardType: string;
+
+
+    @ApiPropertyOptional({description:""})
+    @IsOptional()
+    rewardValue: string;
+
+    @ApiPropertyOptional({description:"百分比"})
+    @IsOptional()
+    percent:string;
+
+
+    @ApiPropertyOptional({description:""})
     @IsOptional()
     recommendReward: string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({description:""})
     @IsOptional()
     totalRecommendReward: string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({description:""})
     @IsOptional()
     personalRecommendReward: string;
 

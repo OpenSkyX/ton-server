@@ -1,6 +1,7 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { TELEGRAM_BOT_TOKEN } from '../Common/Constant';
 
+const test_token = "7440877156:AAEkCTGk3hnYB7OMUoegeKwEdd5fmlKN4Mk"
 export const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { 
     polling: {
         interval: 1000,  // 每秒检查一次更新

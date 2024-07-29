@@ -4,7 +4,7 @@ import { Table, Column, Model, Unique, Index, DataType } from "sequelize-typescr
 @Table({
     tableName: "follower",
     underscored: true,
-    indexes: [{ name: "index_address", fields: ["id"], unique: true }],
+    indexes: [],
     comment: "点赞表",
 })
 export default class Follower extends Model<Follower> {

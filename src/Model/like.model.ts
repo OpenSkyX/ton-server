@@ -5,7 +5,7 @@ import Comment from "./comment.model";
 @Table({
     tableName: "like",
     underscored: true,
-    indexes: [{ name: "index_address", fields: ["id"], unique: true }],
+    indexes: [],
     comment: "点赞表",
 })
 export default class Like extends Model<Like> {
